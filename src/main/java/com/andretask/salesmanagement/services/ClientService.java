@@ -1,5 +1,6 @@
 package com.andretask.salesmanagement.services;
 
+import com.andretask.salesmanagement.dto.ClientUpdateDto;
 import com.andretask.salesmanagement.exceptions.ClientNotFoundException;
 import com.andretask.salesmanagement.exceptions.DuplicateClientException;
 import com.andretask.salesmanagement.models.Client;
@@ -31,8 +32,13 @@ public class ClientService {
         return clientRepository.save(client);
     }
 
+    public Client getClientById(Long id) {
+        Optional<Client> clientOptional = clientRepository.findById(id);
+        return clientOptional.orElse(null);
+    }
 
-    public Client updateClient(Long id, Client updatedClient) {
+
+    public Client updateClient(Long id, ClientUpdateDto updatedClient) {
         Optional<Client> optionalClient = clientRepository.findById(id);
         if (optionalClient.isPresent()) {
             Client client = optionalClient.get();

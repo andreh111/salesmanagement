@@ -1,11 +1,17 @@
 package com.andretask.salesmanagement.controllers;
 
+import com.andretask.salesmanagement.dto.ClientCreateDto;
+import com.andretask.salesmanagement.dto.ClientResponseDto;
+import com.andretask.salesmanagement.dto.ClientUpdateDto;
+import com.andretask.salesmanagement.exceptions.ClientNotFoundException;
 import com.andretask.salesmanagement.models.Client;
 import com.andretask.salesmanagement.services.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
+
 @RestController
 @RequestMapping("/clients")
 public class ClientController {
@@ -18,17 +24,23 @@ public class ClientController {
     }
 
     @PostMapping
-    public Client createClient(@RequestBody Client client) {
-        return clientService.createClient(client);
+    public ClientResponseDto createClient(@RequestBody ClientCreateDto clientCreateDto) {
+        Client client = new Client();
+        client.setName(clientCreateDto.getName());
+        client.setLastName(clientCreateDto.getLastName());
+        client.setMobile(clientCreateDto.getMobile());
+
+        Client createdClient = clientService.createClient(client);
+        return new ClientResponseDto(createdClient.getId(), "Client created successfully");
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Client> updateClient(@PathVariable Long id, @RequestBody Client updatedClient) {
-        Client client = clientService.updateClient(id, updatedClient);
-        if (client == null) {
+    public ResponseEntity<ClientResponseDto> updateClient(@PathVariable Long id, @RequestBody ClientUpdateDto clientDto) {
+        try {
+            Client updatedClient = clientService.updateClient(id, clientDto);
+            return ResponseEntity.ok(new ClientResponseDto(updatedClient.getId(), "Client updated successfully"));
+        } catch (ClientNotFoundException e) {
             return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.ok(client);
     }
 }
-

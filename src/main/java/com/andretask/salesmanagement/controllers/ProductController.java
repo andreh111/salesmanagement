@@ -1,5 +1,6 @@
 package com.andretask.salesmanagement.controllers;
-
+import com.andretask.salesmanagement.dto.ProductCreateDto;
+import com.andretask.salesmanagement.dto.ProductUpdateDto;
 import com.andretask.salesmanagement.models.Product;
 import com.andretask.salesmanagement.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,13 +21,13 @@ public class ProductController {
     }
 
     @PostMapping
-    public Product createProduct(@RequestBody Product product) {
-        return productService.createProduct(product);
+    public Product createProduct(@RequestBody ProductCreateDto productDto) {
+        return productService.createProduct(productDto);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Product> updateProduct(@PathVariable Long id, @RequestBody Product updatedProduct) {
-        Product product = productService.updateProduct(id, updatedProduct);
+    public ResponseEntity<Product> updateProduct(@PathVariable Long id, @RequestBody ProductUpdateDto productDto) {
+        Product product = productService.updateProduct(id, productDto);
         if (product == null) {
             return ResponseEntity.notFound().build();
         }

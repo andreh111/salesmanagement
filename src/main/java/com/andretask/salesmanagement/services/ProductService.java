@@ -1,5 +1,7 @@
 package com.andretask.salesmanagement.services;
 
+import com.andretask.salesmanagement.dto.ProductCreateDto;
+import com.andretask.salesmanagement.dto.ProductUpdateDto;
 import com.andretask.salesmanagement.exceptions.DuplicateProductException;
 import com.andretask.salesmanagement.exceptions.ProductNotFoundException;
 import com.andretask.salesmanagement.models.Product;
@@ -22,22 +24,32 @@ public class ProductService {
         return productRepository.findAll();
     }
 
-    public Product createProduct(Product product) {
-        Optional<Product> existingProduct = productRepository.findByName(product.getName());
+    public Product createProduct(ProductCreateDto productDto) {
+        Optional<Product> existingProduct = productRepository.findByName(productDto.getName());
         if (existingProduct.isPresent()) {
-            throw new DuplicateProductException("Product with name " + product.getName() + " already exists");
+            throw new DuplicateProductException("Product with name " + productDto.getName() + " already exists");
         }
+        Product product = new Product();
+        product.setName(productDto.getName());
+        product.setDescription(productDto.getDescription());
+        product.setCategory(productDto.getCategory());
         product.setCreationDate(new Date());
         return productRepository.save(product);
     }
 
-    public Product updateProduct(Long id, Product updatedProduct) {
+    public Product updateProduct(Long id, ProductUpdateDto productDto) {
         Optional<Product> optionalProduct = productRepository.findById(id);
         if (optionalProduct.isPresent()) {
             Product product = optionalProduct.get();
-            product.setName(updatedProduct.getName());
-            product.setDescription(updatedProduct.getDescription());
-            product.setCategory(updatedProduct.getCategory());
+            if (productDto.getName() != null) {
+                product.setName(productDto.getName());
+            }
+            if (productDto.getDescription() != null) {
+                product.setDescription(productDto.getDescription());
+            }
+            if (productDto.getCategory() != null) {
+                product.setCategory(productDto.getCategory());
+            }
             return productRepository.save(product);
         }
         throw new ProductNotFoundException("Product with id " + id + " not found");

@@ -15,6 +15,9 @@ public class Product {
     @Temporal(TemporalType.TIMESTAMP)
     private Date creationDate;
 
+    public Product() {
+    }
+
     public Product(Long id, String name, String description, String category, Date creationDate) {
         this.id = id;
         this.name = name;

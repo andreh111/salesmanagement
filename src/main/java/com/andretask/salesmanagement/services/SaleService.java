@@ -4,7 +4,6 @@ import com.andretask.salesmanagement.exceptions.SaleNotFoundException;
 import com.andretask.salesmanagement.models.Sale;
 import com.andretask.salesmanagement.models.Transaction;
 import com.andretask.salesmanagement.repositories.SaleRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -13,8 +12,11 @@ import java.util.Optional;
 
 @Service
 public class SaleService {
-    @Autowired
-    private SaleRepository saleRepository;
+    private final SaleRepository saleRepository;
+
+    public SaleService(SaleRepository saleRepository){
+        this.saleRepository = saleRepository;
+    }
 
     public List<Sale> fetchSales() {
         return saleRepository.findAll();

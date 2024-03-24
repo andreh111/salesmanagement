@@ -22,6 +22,16 @@ public class Sale {
     @OneToMany(mappedBy = "sale", cascade = CascadeType.ALL)
     private List<Transaction> transactions;
 
+    public Sale(){}
+
+    public Sale(Long id, Date creationDate, Client client, Client seller, List<Transaction> transactions) {
+        this.id = id;
+        this.creationDate = creationDate;
+        this.client = client;
+        this.seller = seller;
+        this.transactions = transactions;
+    }
+
     public double getTotal() {
         return transactions.stream().mapToDouble(Transaction::getTotal).sum();
     }

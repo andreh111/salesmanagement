@@ -4,7 +4,6 @@ import com.andretask.salesmanagement.exceptions.DuplicateProductException;
 import com.andretask.salesmanagement.exceptions.ProductNotFoundException;
 import com.andretask.salesmanagement.models.Product;
 import com.andretask.salesmanagement.repositories.ProductRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -13,15 +12,18 @@ import java.util.Optional;
 
 @Service
 public class ProductService {
-    @Autowired
-    private ProductRepository productRepository;
+    private final ProductRepository productRepository;
+
+    public ProductService(ProductRepository productRepository) {
+        this.productRepository = productRepository;
+    }
 
     public List<Product> fetchProducts() {
         return productRepository.findAll();
     }
 
     public Product createProduct(Product product) {
-        Optional<Product> existingProduct = productRepository.findById(product.getId());
+        Optional<Product> existingProduct = productRepository.findByName(product.getName());
         if (existingProduct.isPresent()) {
             throw new DuplicateProductException("Product with name " + product.getName() + " already exists");
         }

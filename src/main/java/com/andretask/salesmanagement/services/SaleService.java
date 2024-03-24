@@ -1,7 +1,6 @@
 package com.andretask.salesmanagement.services;
 
 import com.andretask.salesmanagement.controllers.dto.*;
-import com.andretask.salesmanagement.dto.*;
 import com.andretask.salesmanagement.exceptions.TransactionNotFoundException;
 import com.andretask.salesmanagement.models.Client;
 import com.andretask.salesmanagement.models.Product;

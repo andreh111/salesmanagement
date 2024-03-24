@@ -1,16 +1,22 @@
 package com.andretask.salesmanagement.models;
-
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
+
 @Entity
 public class Transaction {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull(message = "Product is required")
     @ManyToOne
     private Product product;
 
+    @Min(value = 1, message = "Quantity must be at least 1")
     private int quantity;
+
+    @Min(value = 0, message = "Price must be non-negative")
     private double price;
 
     @ManyToOne

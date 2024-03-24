@@ -5,6 +5,7 @@ import com.andretask.salesmanagement.models.Product;
 import com.andretask.salesmanagement.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,12 +22,12 @@ public class ProductController {
     }
 
     @PostMapping
-    public Product createProduct(@RequestBody ProductCreateDto productDto) {
+    public Product createProduct(@Validated @RequestBody ProductCreateDto productDto) {
         return productService.createProduct(productDto);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Product> updateProduct(@PathVariable Long id, @RequestBody ProductUpdateDto productDto) {
+    public ResponseEntity<Product> updateProduct(@PathVariable Long id, @Validated @RequestBody ProductUpdateDto productDto) {
         Product product = productService.updateProduct(id, productDto);
         if (product == null) {
             return ResponseEntity.notFound().build();

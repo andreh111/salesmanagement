@@ -1,6 +1,8 @@
 package com.andretask.salesmanagement.models;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 import java.util.Date;
 
@@ -9,8 +11,15 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotBlank(message = "Name is required")
+    @Size(max = 100, message = "Name must be less than 100 characters")
     private String name;
+
+    @Size(max = 500, message = "Description must be less than 500 characters")
     private String description;
+
+    @NotBlank(message = "Category is required")
+    @Size(max = 50, message = "Category must be less than 50 characters")
     private String category;
     @Temporal(TemporalType.TIMESTAMP)
     private Date creationDate;

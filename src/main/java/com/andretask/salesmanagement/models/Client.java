@@ -1,6 +1,9 @@
 package com.andretask.salesmanagement.models;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 
 @Entity
 //@Data
@@ -11,8 +14,14 @@ public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotBlank(message = "Name is required")
     private String name;
+
+    @NotBlank(message = "Last name is required")
     private String lastName;
+
+    @NotNull(message = "Mobile number is required")
+    @Pattern(regexp = "^[0-9]{10}$", message = "Mobile number must be 10 digits")
     private String mobile;
 
     public Client() {

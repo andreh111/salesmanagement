@@ -4,8 +4,10 @@ import com.andretask.salesmanagement.controllers.dto.SaleCreateDto;
 import com.andretask.salesmanagement.controllers.dto.SaleResponseDto;
 import com.andretask.salesmanagement.controllers.dto.SaleUpdateDto;
 import com.andretask.salesmanagement.services.SaleService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,13 +24,13 @@ public class SaleController {
     }
 
     @PostMapping
-    public SaleResponseDto createSale(@RequestBody SaleCreateDto saleCreateDto) {
+    public SaleResponseDto createSale(@Validated @RequestBody SaleCreateDto saleCreateDto) {
         return saleService.createSale(saleCreateDto);
     }
 
 
     @PatchMapping("/{id}")
-    public ResponseEntity<SaleResponseDto> updateSale(@PathVariable Long id, @RequestBody SaleUpdateDto updateSaleDto) {
+    public ResponseEntity<SaleResponseDto> updateSale(@PathVariable Long id,@Validated @RequestBody SaleUpdateDto updateSaleDto) {
         SaleResponseDto updatedSale = saleService.updateSale(id, updateSaleDto);
         if (updatedSale == null) {
             return ResponseEntity.notFound().build();

@@ -1,5 +1,6 @@
 package com.andretask.salesmanagement.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.Date;
@@ -20,6 +21,7 @@ public class Sale {
     private Client seller;
 
     @OneToMany(mappedBy = "sale", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Transaction> transactions;
 
     public Sale(){}

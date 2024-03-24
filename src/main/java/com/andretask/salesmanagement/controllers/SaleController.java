@@ -1,5 +1,8 @@
 package com.andretask.salesmanagement.controllers;
 
+import com.andretask.salesmanagement.dto.SaleCreateDto;
+import com.andretask.salesmanagement.dto.SaleResponseDto;
+import com.andretask.salesmanagement.dto.SaleUpdateDto;
 import com.andretask.salesmanagement.models.Sale;
 import com.andretask.salesmanagement.services.SaleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,23 +18,24 @@ public class SaleController {
     private SaleService saleService;
 
     @GetMapping
-    public List<Sale> fetchSales() {
+    public List<SaleResponseDto> fetchSales() {
         return saleService.fetchSales();
     }
 
     @PostMapping
-    public Sale createSale(@RequestBody Sale sale) {
-        return saleService.createSale(sale);
+    public SaleResponseDto createSale(@RequestBody SaleCreateDto saleCreateDto) {
+        return saleService.createSale(saleCreateDto);
     }
 
-    @PutMapping("/{saleId}/transactions/{transactionId}")
-    public ResponseEntity<Sale> updateTransaction(@PathVariable Long saleId, @PathVariable Long transactionId,
-                                                  @RequestParam int quantity, @RequestParam double price) {
-        Sale sale = saleService.updateTransaction(saleId, transactionId, quantity, price);
-        if (sale == null) {
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<SaleResponseDto> updateSale(@PathVariable Long id, @RequestBody SaleUpdateDto updateSaleDto) {
+        SaleResponseDto updatedSale = saleService.updateSale(id, updateSaleDto);
+        if (updatedSale == null) {
             return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.ok(sale);
+        return ResponseEntity.ok(updatedSale);
     }
-}
 
+
+}

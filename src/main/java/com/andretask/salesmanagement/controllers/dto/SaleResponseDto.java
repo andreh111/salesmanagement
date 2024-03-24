@@ -1,4 +1,4 @@
-package com.andretask.salesmanagement.dto;
+package com.andretask.salesmanagement.controllers.dto;
 
 import java.util.Date;
 

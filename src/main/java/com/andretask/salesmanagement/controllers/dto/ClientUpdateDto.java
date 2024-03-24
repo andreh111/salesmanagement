@@ -1,4 +1,4 @@
-package com.andretask.salesmanagement.dto;
+package com.andretask.salesmanagement.controllers.dto;
 
 public class ClientUpdateDto {
     private String name;

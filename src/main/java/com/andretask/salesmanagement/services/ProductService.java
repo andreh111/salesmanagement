@@ -1,7 +1,7 @@
 package com.andretask.salesmanagement.services;
 
-import com.andretask.salesmanagement.dto.ProductCreateDto;
-import com.andretask.salesmanagement.dto.ProductUpdateDto;
+import com.andretask.salesmanagement.controllers.dto.ProductCreateDto;
+import com.andretask.salesmanagement.controllers.dto.ProductUpdateDto;
 import com.andretask.salesmanagement.exceptions.DuplicateProductException;
 import com.andretask.salesmanagement.exceptions.ProductNotFoundException;
 import com.andretask.salesmanagement.models.Product;

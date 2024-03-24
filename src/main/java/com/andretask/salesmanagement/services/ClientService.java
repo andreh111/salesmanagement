@@ -1,12 +1,10 @@
 package com.andretask.salesmanagement.services;
 
-import com.andretask.salesmanagement.dto.ClientUpdateDto;
+import com.andretask.salesmanagement.controllers.dto.ClientUpdateDto;
 import com.andretask.salesmanagement.exceptions.ClientNotFoundException;
 import com.andretask.salesmanagement.exceptions.DuplicateClientException;
 import com.andretask.salesmanagement.models.Client;
 import com.andretask.salesmanagement.repositories.ClientRepository;
-import com.andretask.salesmanagement.repositories.ProductRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

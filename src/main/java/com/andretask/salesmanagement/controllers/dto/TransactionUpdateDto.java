@@ -1,4 +1,4 @@
-package com.andretask.salesmanagement.dto;
+package com.andretask.salesmanagement.controllers.dto;
 public class TransactionUpdateDto {
     private Long transactionId;
     private Integer quantity;

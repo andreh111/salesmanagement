@@ -1,9 +1,8 @@
 package com.andretask.salesmanagement.controllers;
 
-import com.andretask.salesmanagement.dto.SaleCreateDto;
-import com.andretask.salesmanagement.dto.SaleResponseDto;
-import com.andretask.salesmanagement.dto.SaleUpdateDto;
-import com.andretask.salesmanagement.models.Sale;
+import com.andretask.salesmanagement.controllers.dto.SaleCreateDto;
+import com.andretask.salesmanagement.controllers.dto.SaleResponseDto;
+import com.andretask.salesmanagement.controllers.dto.SaleUpdateDto;
 import com.andretask.salesmanagement.services.SaleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

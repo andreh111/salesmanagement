@@ -17,18 +17,33 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+/**
+ * Service class for managing sales.
+ */
 @Service
 public class SaleService {
     private final SaleRepository saleRepository;
     private final ClientRepository clientRepository;
     private final ProductRepository productRepository;
 
+    /**
+     * Constructs a new SaleService with the given repositories.
+     *
+     * @param saleRepository the repository used for sale operations
+     * @param clientRepository the repository used for client operations
+     * @param productRepository the repository used for product operations
+     */
     public SaleService(SaleRepository saleRepository, ClientRepository clientRepository, ProductRepository productRepository) {
         this.saleRepository = saleRepository;
         this.clientRepository = clientRepository;
         this.productRepository = productRepository;
     }
 
+    /**
+     * Fetches all sales from the repository and converts them to SaleResponseDto objects.
+     *
+     * @return a list of SaleResponseDto objects representing all sales
+     */
     public List<SaleResponseDto> fetchSales() {
         List<Sale> sales = saleRepository.findAll();
         return sales.stream()
@@ -39,6 +54,13 @@ public class SaleService {
 
 
 
+    /**
+     * Creates a new sale based on the provided SaleCreateDto object.
+     *
+     * @param saleCreateDto the data transfer object containing the sale information
+     * @return a SaleResponseDto object representing the created sale
+     * @throws RuntimeException if the client or seller specified in the saleCreateDto is not found
+     */
     public SaleResponseDto createSale(SaleCreateDto saleCreateDto) {
         Sale sale = new Sale();
         sale.setCreationDate(new Date());
@@ -75,6 +97,15 @@ public class SaleService {
         return responseDto;
     }
 
+
+    /**
+     * Updates an existing sale with the given ID using the provided updated sale information.
+     *
+     * @param id the ID of the sale to be updated
+     * @param updateSaleDto the updated sale data transfer object
+     * @return a SaleResponseDto object representing the updated sale
+     * @throws TransactionNotFoundException if a transaction specified in the updateSaleDto is not found
+     */
     public SaleResponseDto updateSale(Long id, SaleUpdateDto updateSaleDto) {
         Optional<Sale> optionalSale = saleRepository.findById(id);
         if (optionalSale.isPresent()) {
@@ -97,6 +128,15 @@ public class SaleService {
         return null;
     }
 
+    /**
+     * Converts a Sale object into a SaleResponseDto object.
+     *
+     * This method maps the properties of a Sale object to a SaleResponseDto object,
+     * including the sale's ID, creation date, client ID, seller ID, and total amount.
+     *
+     * @param sale the Sale object to be converted
+     * @return a SaleResponseDto object representing the sale
+     */
     private SaleResponseDto convertToSaleResponseDto(Sale sale) {
         SaleResponseDto responseDto = new SaleResponseDto();
         responseDto.setId(sale.getId());

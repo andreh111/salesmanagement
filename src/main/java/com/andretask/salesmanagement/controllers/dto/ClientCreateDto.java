@@ -5,6 +5,12 @@ public class ClientCreateDto {
     private String lastName;
     private String mobile;
 
+    public ClientCreateDto(String name, String lastName, String mobile) {
+        this.name = name;
+        this.lastName = lastName;
+        this.mobile = mobile;
+    }
+
     // Getters and setters
     public String getName() {
         return name;

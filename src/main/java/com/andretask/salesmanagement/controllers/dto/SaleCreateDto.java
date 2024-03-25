@@ -7,6 +7,12 @@ public class SaleCreateDto {
     private Long sellerId;
     private List<TransactionDto> transactions;
 
+    public SaleCreateDto(Long clientId, Long sellerId, List<TransactionDto> transactions) {
+        this.clientId = clientId;
+        this.sellerId = sellerId;
+        this.transactions = transactions;
+    }
+
     // Getters and setters
     public Long getClientId() {
         return clientId;

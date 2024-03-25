@@ -5,6 +5,12 @@ public class ProductCreateDto {
     private String description;
     private String category;
 
+    public ProductCreateDto(String name, String description, String category) {
+        this.name = name;
+        this.description = description;
+        this.category = category;
+    }
+
     // Getters and setters
     public String getName() {
         return name;

@@ -1,6 +1,7 @@
 package com.andretask.salesmanagement.controllers.dto;
 
 import java.util.Date;
+import java.util.List;
 
 public class SaleResponseDto {
     private Long id;
@@ -8,6 +9,15 @@ public class SaleResponseDto {
     private Long clientId;
     private Long sellerId;
     private double total;
+    public SaleResponseDto() {}
+
+    public SaleResponseDto(Long id, Date creationDate, Long clientId, Long sellerId, double total) {
+        this.id = id;
+        this.creationDate = creationDate;
+        this.clientId = clientId;
+        this.sellerId = sellerId;
+        this.total = total;
+    }
 
     // Getters and setters
     public Long getId() {
@@ -49,4 +59,5 @@ public class SaleResponseDto {
     public void setTotal(double total) {
         this.total = total;
     }
+
 }

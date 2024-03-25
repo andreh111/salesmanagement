@@ -5,6 +5,12 @@ public class ProductUpdateDto {
     private String description;
     private String category;
 
+    public ProductUpdateDto(String name, String description, String category) {
+        this.name = name;
+        this.description = description;
+        this.category = category;
+    }
+
     // Getters and setters
     public String getName() {
         return name;

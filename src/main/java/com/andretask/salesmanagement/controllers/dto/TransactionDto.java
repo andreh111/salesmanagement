@@ -5,6 +5,12 @@ public class TransactionDto {
     private int quantity;
     private double price;
 
+    public TransactionDto(Long productId, int quantity, double price) {
+        this.productId = productId;
+        this.quantity = quantity;
+        this.price = price;
+    }
+
     // Getters and setters
     public Long getProductId() {
         return productId;

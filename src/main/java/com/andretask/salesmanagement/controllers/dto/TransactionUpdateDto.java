@@ -4,6 +4,12 @@ public class TransactionUpdateDto {
     private Integer quantity;
     private Double price;
 
+    public TransactionUpdateDto(Long transactionId, Integer quantity, Double price) {
+        this.transactionId = transactionId;
+        this.quantity = quantity;
+        this.price = price;
+    }
+
     // Getters and setters
     public Long getTransactionId() {
         return transactionId;

@@ -3,6 +3,10 @@
 
 This API provides functionality for managing clients, products, and sales within a sales management system. It includes endpoints for creating, fetching, and updating clients, products, and sales.
 
+## Swagger
+The API documentation is available through Swagger UI. You can access and interact with the API documentation by navigating to the following URL in your web browser:
+`http://localhost:8080/swagger-ui/index.html#/`
+
 ## Client API
 
 ### Fetch All Clients

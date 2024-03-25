@@ -131,3 +131,15 @@ The API documentation is available through Swagger UI. You can access and intera
     ]
   }
   ```
+  
+
+## Running Unit Tests for Controllers
+To execute the unit tests for your controllers, you can use Maven's test command. Navigate to the root directory of your project (where your pom.xml file is located) and run the following command in your terminal:
+`mvn test`
+
+This command will run all the tests in your project, including the unit tests for your controllers. If you want to run tests for a specific controller, you can use the -Dtest option followed by the class name of the test:
+
+`mvn test -Dtest=YourControllerTest`
+
+Make sure to replace YourControllerTest with the actual name of your test class for the controller. This section will guide users on how to run the unit tests for their controllers using Maven.
+
